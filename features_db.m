@@ -17,7 +17,7 @@ for i = 1:n
     if files(i).name(1) == 'm'
         ar_labels(i) = 100 + str2double(files(i).name(3:5));
     else
-        ar_labels(i) = 100 + str2double(files(i).name(3:5));
+        ar_labels(i) = str2double(files(i).name(3:5));
     end
     
     filename = strcat(dir_path, '/', files(i).name);
@@ -42,7 +42,7 @@ dir_path = '/media/denisilie94/D/Dictionary Learning/Caltech101/101_ObjectCatego
 dirFolders = dir(dir_path);
 n = length(dirFolders);
 
-position    = 0;
+position    = 1;
 label       = 0;
 no_of_elems = 8677;
 
@@ -87,7 +87,7 @@ clearvars -except v_features_dim;
 dir_path = '/media/denisilie94/D/Dictionary Learning/Caltech256';
 dirFolders = dir(dir_path);
 
-position    = 0;
+position    = 1;
 no_of_elems = 30608;
 
 caltech256_labels   = zeros(1, no_of_elems);
@@ -128,6 +128,12 @@ clearvars -except v_features_dim;
 dir_path = '/media/denisilie94/D/Dictionary Learning/Extended Yale B/CroppedYale';
 dirFolders = dir(dir_path);
 
+position    = 1;
+no_of_elems = 2452;
+
+yaleBcropped_labels   = zeros(1, no_of_elems);
+yaleBcropped_features = zeros(v_features_dim, no_of_elems);
+
 for i = 1:length(dirFolders)
     
     if (~strcmp(dirFolders(i).name, '.') && ~strcmp(dirFolders(i).name, '..'))
@@ -136,14 +142,16 @@ for i = 1:length(dirFolders)
         
         for j = 1:length(files)
             
-            yaleBcropped_label(j) = str2double(dirFolders(3).name(end-1:end));
+            yaleBcropped_labels(position) = str2double(dirFolders(3).name(end-1:end));
             
             filename = strcat(tmp_dir_path, '/', files(j).name);
             img = imread(filename);
             [rows, cols] = size(img);
 
-            yaleBcropped_features(:,j) = extract_features(img, rows, cols, v_features_dim);
+            yaleBcropped_features(:,position) = extract_features(img, rows, cols, v_features_dim);
             fprintf('YaleB cropped database %d / %d folders completed with %d / %d img completed\n', i - 2, length(dirFolders) - 2, j, length(files));
+
+            position = position + 1;
         end
     end  
 end
@@ -161,6 +169,12 @@ clearvars -except v_features_dim;
 dir_path = '/media/denisilie94/D/Dictionary Learning/Extended Yale B/ExtendedYaleB';
 dirFolders = dir(dir_path);
 
+position    = 1;
+no_of_elems = 16380;
+
+yaleB_label   = zeros(1, no_of_elems);
+yaleB_features = zeros(v_features_dim, no_of_elems);
+
 for i = 1:length(dirFolders)
     
     if (~strcmp(dirFolders(i).name, '.') && ~strcmp(dirFolders(i).name, '..'))
@@ -169,14 +183,16 @@ for i = 1:length(dirFolders)
         
         for j = 1:length(files)
             
-            yaleB_label(j) = str2double(dirFolders(3).name(end-1:end));
+            yaleB_label(position) = str2double(dirFolders(3).name(end-1:end));
             
             filename = strcat(tmp_dir_path, '/', files(j).name);
             img = imread(filename);
             [rows, cols] = size(img);
 
-            yaleB_features(:,j) = extract_features(img, rows, cols, v_features_dim);
+            yaleB_features(:,position) = extract_features(img, rows, cols, v_features_dim);
             fprintf('YaleB database %d / %d folders completed with %d / %d img completed\n', i - 2, length(dirFolders) - 2, j, length(files));
+
+            position = position + 1;
         end
     end  
 end
