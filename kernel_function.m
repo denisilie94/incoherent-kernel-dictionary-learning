@@ -3,7 +3,7 @@ function [ k ] = kernel_function( x, y, s )
 %   Detailed explanation goes here
 
     % polynomial kernel
-%     k =  (x'*y+4)^2;
+%     k =  (x'*y+s.a)^s.b;
 
     % gaussian kernel
     k =  exp(-norm(x - y)^2 / (2*s*s));
