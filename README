@@ -1,10 +1,13 @@
 If you use our work in your research, please cite as:
 
-Denis C ILIE-ABLACHIM and Bogdan DUMITRESCU, Classification with Incoherent Kernel Dictionary Learning, CSCS23, 2021
-```
-```
-
+@inproceedings{ilie2021classification,
+  title={Classification with Incoherent Kernel Dictionary Learning},
+  author={Ilie-Ablachim, Denis C and Dumitrescu, Bogdan},
+  booktitle={2021 23rd International Conference on Control Systems and Computer Science (CSCS)},
+  pages={106--111},
+  year={2021},
+  organization={IEEE}
+}
 
 OMP wrapper based on software written by Ron Rubinstein.
-
 https://www.cs.technion.ac.il/~ronrubin/software.html
